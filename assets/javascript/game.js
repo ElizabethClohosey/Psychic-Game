@@ -8,6 +8,11 @@ alert("Hello Lizzie");
     var cpuChoice = alphabet[Math.floor(Math.random() * alphabet.length)]
         console.log(cpuChoice);
 
+        // if (wins++) {
+        //     cpuChoice = alphabet[Math.floor(Math.random() * alphabet.length)]
+        //     console.log(cpuChoice);  
+        // }
+
     // variables for player stats 
     var wins = 0;
     var losses = 0;
