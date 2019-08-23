@@ -6,11 +6,14 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
     "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+    
+
+
     // variables for player stats 
     var wins = 0;
     var losses = 0;
     var guessesLeft = 5;
-    var lettersGuessed = "";
+    var lettersGuessed = [];    //Array to capture user letters
 
      // variables to log and display stats in HTML 
     var gameStartText = document.getElementById("game-start");
@@ -22,41 +25,49 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     // generates computer choice 
     var cpuChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
     console.log(cpuChoice);
+    
 
     // event function to start and run game .  
     // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
         userGuess = event.key;
-        console.log(userGuess);
+        lettersGuessed.push(userGuess);
+        // console.log(userGuess);
 
+        // I also want to say if userGuess === cpuChice generate new letter 
         if (userGuess === cpuChoice) {
             wins++;
         } else {
             guessesLeft--;
         }
 
+        // if wins++ generate new number 
+
+
         if (guessesLeft === 0) {
             losses++;
         }
+
+        if (guessesLeft === 0) {
+            guessesLeft = 5;
+        }    
+
        
-
-
     
         // Hide the directions
         // gameStartText.innerHTML = "";      Where do I put you?
 
         winsText.innerHTML = "Wins: " + wins;
-            // console.log(wins);
-        lossesText.innerHTML = "Losses " + losses;
-            // console.log(losses);
+            console.log(wins);
+        lossesText.innerHTML = "Losses: " + losses;
+            console.log(losses);
         guessesLeftText.innerHTML = "Guesses Left: " + guessesLeft;
-            // console.log(guessesLeft);
-        lettersGuessedText.textContent = "Letters Guessed: " + userGuess;
-            // console.log(lettersGuessed);
+            console.log(guessesLeft);
+        lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
+            console.log(lettersGuessed);
     }
 
 
-    
     
 
         // if (wins++) {
