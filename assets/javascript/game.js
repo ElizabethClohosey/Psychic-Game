@@ -31,17 +31,16 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
         userGuess = event.key;
-        lettersGuessed.push(userGuess);
+        lettersGuessed.push(userGuess);   // reset after win or lose
         // console.log(userGuess);
 
-        // I also want to say if userGuess === cpuChice generate new letter 
         if (userGuess === cpuChoice) {
             wins++;
         } else {
             guessesLeft--;
         }
 
-        // if wins++ generate new number 
+        // if wins++ or losses ++ generate new number 
 
 
         if (guessesLeft === 0) {
@@ -58,22 +57,20 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         // gameStartText.innerHTML = "";      Where do I put you?
 
         winsText.innerHTML = "Wins: " + wins;
-            console.log(wins);
+            // console.log(wins);
         lossesText.innerHTML = "Losses: " + losses;
-            console.log(losses);
+            // console.log(losses);
         guessesLeftText.innerHTML = "Guesses Left: " + guessesLeft;
-            console.log(guessesLeft);
+            // console.log(guessesLeft);
         lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
-            console.log(lettersGuessed);
+            // console.log(lettersGuessed);
     }
 
-
-    
-
-        // if (wins++) {
-        //     cpuChoice = alphabet[Math.floor(Math.random() * alphabet.length)]
-        //     console.log(cpuChoice);  
-        // }
+        // NEED TO DO 
+        // hide instructions after first onkeyup event 
+        // regenerate new letter if wins++ or loses++
+        // also reset letters guessed after wins++ or loses++
+        // reset the game when wins === 0 || losses === 5
 
     
 
