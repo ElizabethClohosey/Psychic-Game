@@ -1,15 +1,10 @@
 alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
 
-// var myScripts = function() {  When exactly should I use this?
-
     // variable for computer letter choice 
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
     "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-    
-
-
-    // variables for player stats 
+     // variables for player stats 
     var wins = 0;
     var losses = 0;
     var guessesLeft = 10;
@@ -27,35 +22,30 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     var cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
     console.log(cpuChoice);
 
-
-    // function to generate computer choice 
+    // function to generate computer choice to be called later on
     function genLetter () {
         alphabet[Math.floor(Math.random() * alphabet.length)]; 
     }
     
-
-   // event function to start and run game .  
+    // event function to start and run game .  
     // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
         userGuess = event.key;
-        lettersGuessed.push(userGuess);   // reset after win or lose
-        // console.log(userGuess);
+        lettersGuessed.push(userGuess);  
 
-        
         // if user guess === cpuChoice I want to call gen letter function 
-        // I want to call this function again with losses 
+        // I want to call this function again with losses
+        
+        // determines what happens when user guesses a letter
         if (userGuess === cpuChoice) {
             wins++;
             lettersGuessed = [];
-            // console.log(genLetter);
         } else {
             guessesLeft--;
         }
         genLetter(); 
 
-        // if wins++ or losses ++ generate new number 
-
-        
+        // determines a loss and resets stats other than wins  
         if (guessesLeft === 0) {
             losses++;
             lettersGuessed = [];
@@ -63,6 +53,7 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         } 
         genLetter();    
 
+        // determines how user losses and rests game 
         if (losses > 4) {
             alert("YOU LOST");
             wins = 0;
@@ -72,6 +63,7 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         }
         genLetter(); 
 
+        // determines how a user wins and rests game 
         if (wins > 4) {
             alert("YOU WON");
             wins = 0;
@@ -81,26 +73,20 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         }
         genLetter(); 
 
-       
-    
-        // Hide the directions
-        // gameStartText.innerHTML = "";      Where do I put you?
-
+        // logs stats in HTML 
         winsText.innerHTML = "Wins: " + wins;
-            // console.log(wins);
         lossesText.innerHTML = "Losses: " + losses;
-            // console.log(losses);
         guessesLeftText.innerHTML = "Guesses Left: " + guessesLeft;
-            // console.log(guessesLeft);
         lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
-            // console.log(lettersGuessed);
+            
     }
 
         // NEED TO DO 
         // hide instructions after first onkeyup event 
         // regenerate new letter if wins++ or loses++
         
-
+        // Hide the directions
+        // gameStartText.innerHTML = "";      Where do I put you?
     
 
    
