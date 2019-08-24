@@ -21,37 +21,30 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     // variable to generate new computer choice 
     var cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
     console.log(cpuChoice);
-
-    // function to generate computer choice to be called later on
-    function genLetter () {
-        alphabet[Math.floor(Math.random() * alphabet.length)]; 
-    }
     
     // event function to start and run game .  
     // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
         userGuess = event.key;
         lettersGuessed.push(userGuess);  
-
-        // if user guess === cpuChoice I want to call gen letter function 
-        // I want to call this function again with losses
         
         // determines what happens when user guesses a letter
         if (userGuess === cpuChoice) {
             wins++;
             lettersGuessed = [];
+            cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+    console.log(cpuChoice, "CPU in on key up");
+        
         } else {
             guessesLeft--;
         }
-        genLetter(); 
 
-        // determines a loss and resets stats other than wins  
+        // determines a loss and resets stats other than wins --- does not generate new number  
         if (guessesLeft === 0) {
             losses++;
             lettersGuessed = [];
             guessesLeft = 10;
-        } 
-        genLetter();    
+        }     
 
         // determines how user losses and rests game 
         if (losses > 4) {
@@ -60,8 +53,9 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
             losses = 0;
             lettersGuessed = [];
             guessesLeft = 10;
-        }
-        genLetter(); 
+            cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+            console.log(cpuChoice, "CPU in on key up");
+        } 
 
         // determines how a user wins and rests game 
         if (wins > 4) {
@@ -70,8 +64,9 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
             losses = 0;
             lettersGuessed = [];
             guessesLeft = 10;
+            cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+            console.log(cpuChoice, "CPU in on key up");
         }
-        genLetter(); 
 
         // logs stats in HTML 
         winsText.innerHTML = "Wins: " + wins;
