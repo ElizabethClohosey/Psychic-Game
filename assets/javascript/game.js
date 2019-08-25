@@ -23,7 +23,7 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     
     // event function to start and run game.  // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
-        userGuess = event.key;
+        userGuess = event.key.toLowerCase();
         lettersGuessed.push(userGuess);  
         gameStartText.innerHTML = "";      // Hides the directions
 
