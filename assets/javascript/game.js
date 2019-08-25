@@ -9,7 +9,6 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     var losses = 0;
     var guessesLeft = 10;
     var lettersGuessed = [];    //Array to capture user letters
-    // var colors = ["pink", "purple", "yellow"];
 
      // variables to log and display stats in HTML 
     var gameStartText = document.getElementById("game-start");
@@ -22,18 +21,19 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     var cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
     console.log(cpuChoice);
     
-    // event function to start and run game .  
-    // If player guesses correctly Guesses Left will stay the same
+    // event function to start and run game.  // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
         userGuess = event.key;
         lettersGuessed.push(userGuess);  
-        
+        gameStartText.innerHTML = "";      // Hides the directions
+
         // determines what happens when user guesses a letter
         if (userGuess === cpuChoice) {
             wins++;
             lettersGuessed = [];
+            guessesLeft = 10;
             cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
-    console.log(cpuChoice, "CPU in on key up");
+            console.log(cpuChoice, "CPU in on key up");
         
         } else {
             guessesLeft--;
@@ -54,7 +54,6 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
             lettersGuessed = [];
             guessesLeft = 10;
             cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
-            console.log(cpuChoice, "CPU in on key up");
         } 
 
         // determines how a user wins and rests game 
@@ -65,7 +64,6 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
             lettersGuessed = [];
             guessesLeft = 10;
             cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
-            console.log(cpuChoice, "CPU in on key up");
         }
 
         // logs stats in HTML 
@@ -73,16 +71,9 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         lossesText.innerHTML = "Losses: " + losses;
         guessesLeftText.innerHTML = "Guesses Left: " + guessesLeft;
         lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
-            
     }
 
-        // NEED TO DO 
-        // hide instructions after first onkeyup event 
-        // regenerate new letter if wins++ or loses++
         
-        // Hide the directions
-        // gameStartText.innerHTML = "";      Where do I put you?
     
 
    
-// }
