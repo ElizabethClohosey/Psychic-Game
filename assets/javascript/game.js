@@ -37,13 +37,13 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         losses = 0;
     }
     
-    // event function to start and run game.  // If player guesses correctly Guesses Left will stay the same
+    // event function to start and run game.  // If player guesses correctly Guesses Left will reset
     document.onkeyup = function(event) {
         userGuess = event.key.toLowerCase();
         lettersGuessed.push(userGuess);  
         gameStartText.innerHTML = "";      // Hides the directions
 
-        // determines what happens when user guesses a letter
+        // the following conditionals determine what happens when user guesses a letter
         if (userGuess === cpuChoice) {
             wins++;
             resetGameBoard();
