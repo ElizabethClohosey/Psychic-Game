@@ -17,9 +17,25 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
     var guessesLeftText = document.getElementById("guesses-left-text");
     var lettersGuessedText = document.getElementById("letters-guessed-text");
 
-    // variable to generate new computer choice 
+    // variable to generate new computer choice
     var cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
-    console.log(cpuChoice);
+        console.log(cpuChoice);
+
+    function resetGameBoard() {
+        lettersGuessed = [];
+        guessesLeft = 10;
+        cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+        console.log("resetGameBoard " + cpuChoice);
+    }
+
+    function userWinOrLose() {
+        lettersGuessed = [];
+        guessesLeft = 10;
+        cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+        console.log("userWinOrLose reset " + cpuChoice);
+        wins = 0;
+        losses = 0;
+    }
     
     // event function to start and run game.  // If player guesses correctly Guesses Left will stay the same
     document.onkeyup = function(event) {
@@ -30,10 +46,7 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         // determines what happens when user guesses a letter
         if (userGuess === cpuChoice) {
             wins++;
-            lettersGuessed = [];
-            guessesLeft = 10;
-            cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
-            console.log(cpuChoice, "CPU in on key up");
+            resetGameBoard();
         
         } else {
             guessesLeft--;
@@ -42,28 +55,19 @@ alert('Hello!  Guess what letter I am thinking of.  Press "OK" to get started');
         // determines a loss and resets stats other than wins --- does not generate new number  
         if (guessesLeft === 0) {
             losses++;
-            lettersGuessed = [];
-            guessesLeft = 10;
+            resetGameBoard();
         }     
 
         // determines how user losses and rests game 
         if (losses > 4) {
             alert("YOU LOST");
-            wins = 0;
-            losses = 0;
-            lettersGuessed = [];
-            guessesLeft = 10;
-            cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+            userWinOrLose();
         } 
 
         // determines how a user wins and rests game 
         if (wins > 4) {
             alert("YOU WON");
-            wins = 0;
-            losses = 0;
-            lettersGuessed = [];
-            guessesLeft = 10;
-            cpuChoice =  alphabet[Math.floor(Math.random() * alphabet.length)];
+            userWinOrLose();
         }
 
         // logs stats in HTML 
